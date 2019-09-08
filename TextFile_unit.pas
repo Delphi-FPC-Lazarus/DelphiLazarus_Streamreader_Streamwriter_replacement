@@ -61,7 +61,7 @@ type
     function ReadLine: String;
     function EndOfFile: Boolean;
 
-    constructor Create(filename: string);
+    constructor Create(const filename: string);
     destructor Destroy; override;
   end;
 
@@ -71,10 +71,10 @@ type
     fwtext: TextFile;
     fopen: Boolean;
   public
-    constructor Create(filename: string; appendfile: Boolean);
+    constructor Create(const filename: string; const appendfile: Boolean);
     destructor Destroy; override;
 
-    procedure WriteLine(s: string);
+    procedure WriteLine(const s: string);
   end;
 
 resourcestring
@@ -105,7 +105,7 @@ end;
 // ----------------------------------------------------------------------
 // Reader
 
-constructor TTextFileReader.Create(filename: string);
+constructor TTextFileReader.Create(const filename: string);
 {$IFNDEF FPC}
 var
   ctmp: char;
@@ -149,7 +149,7 @@ end;
 // ----------------------------------------------------------------------
 // Writer
 
-constructor TTextFileWriter.Create(filename: string; appendfile: Boolean);
+constructor TTextFileWriter.Create(const filename: string; const appendfile: Boolean);
 begin
   inherited Create;
 
@@ -178,7 +178,7 @@ begin
   inherited Destroy;
 end;
 
-procedure TTextFileWriter.WriteLine(s: string);
+procedure TTextFileWriter.WriteLine(const s: string);
 begin
   writeln(fwtext, s);
 end;
